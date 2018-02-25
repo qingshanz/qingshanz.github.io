@@ -150,6 +150,54 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-百度收录手动推送" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="hexo-�ٶ���¼-javaʵ��"><a href="#hexo-�ٶ���¼-javaʵ��" class="headerlink" title="hexo �ٶ���¼ javaʵ��"></a>hexo �ٶ���¼ javaʵ��</h3><p>�ٶ����� <a href="https://ziyuan.baidu.com/linksubmit/index" target="_blank" rel="noopener">https://ziyuan.baidu.com/linksubmit/index</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">import java.io.BufferedReader;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.io.PrintWriter;</span><br><span class="line">import java.net.URL;</span><br><span class="line">import java.net.URLConnection;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class baiduPost &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        String url = &quot; http://data.zz.baidu.com/urls?site=https://qingshanz.github.io&amp;token=xxxx&quot;;//��վ�ķ���������</span><br><span class="line">        String[] param = &#123;</span><br><span class="line">            &quot;https://qingshanz.github.io/2018/01/04/hexo/&quot;,</span><br><span class="line">            &quot;https://qingshanz.github.io/2018/01/04/lombok/&quot;//��Ҫ���͵���ַ</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            String json = Post(url, param);//ִ�����ͷ���</span><br><span class="line">            System.out.println(&quot;������&quot;+json);  //��ӡ���ͽ���</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static String Post(String PostUrl, String[] Parameters) &#123;</span><br><span class="line">        if (null == PostUrl || null == Parameters || Parameters.length == 0) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        String result = &quot;&quot;;</span><br><span class="line">        PrintWriter out = null;</span><br><span class="line">        BufferedReader in = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            //����URL֮��������  </span><br><span class="line">            URLConnection conn = new URL(PostUrl).openConnection();</span><br><span class="line">            //����ͨ�õ���������  </span><br><span class="line">            conn.setRequestProperty(&quot;Host&quot;, &quot;data.zz.baidu.com&quot;);</span><br><span class="line">            conn.setRequestProperty(&quot;User-Agent&quot;, &quot;curl/7.12.1&quot;);</span><br><span class="line">            conn.setRequestProperty(&quot;Content-Length&quot;, &quot;83&quot;);</span><br><span class="line">            conn.setRequestProperty(&quot;Content-Type&quot;, &quot;text/plain&quot;);</span><br><span class="line"></span><br><span class="line">            //����POST��������������������  </span><br><span class="line">            conn.setDoInput(true);</span><br><span class="line">            conn.setDoOutput(true);</span><br><span class="line"></span><br><span class="line">            //��ȡconn��Ӧ��������  </span><br><span class="line">            out = new PrintWriter(conn.getOutputStream());</span><br><span class="line">            //������������  </span><br><span class="line">            String param = &quot;&quot;;</span><br><span class="line">            for (String s: Parameters) &#123;</span><br><span class="line">                param += s + &quot;\n&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            out.print(param.trim());</span><br><span class="line">            //�����������Ļ���  </span><br><span class="line">            out.flush();</span><br><span class="line">            //ͨ��BufferedReader����������ȡUrl����Ӧ  </span><br><span class="line">            in = new BufferedReader(</span><br><span class="line">                new InputStreamReader(conn.getInputStream()));</span><br><span class="line">            String line;</span><br><span class="line">            while ((line = in.readLine()) != null) &#123;</span><br><span class="line">                result += line;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            System.out.println(&quot;����post���������쳣��&quot; + e);</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                if (out != null) &#123;</span><br><span class="line">                    out.close();</span><br><span class="line">                &#125;</span><br><span class="line">                if (in != null) &#123;</span><br><span class="line">                    in.close();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125; catch (IOException ex) &#123;</span><br><span class="line">                ex.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/25/百度收录手动推送/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hexo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
